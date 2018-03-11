@@ -1,11 +1,10 @@
 package org.yqj.dao.demo;
 
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.net.InetAddress;
+import org.yqj.dao.demo.dao.OriginDao;
 
 /**
  * Created by yaoqijun.
@@ -17,9 +16,11 @@ import java.net.InetAddress;
 @Slf4j
 public class RunCommanLine implements CommandLineRunner{
 
+    @Autowired
+    private OriginDao originDao;
+
     public void run(String... args) throws Exception {
         log.info(" command info run");
-        System.out.println("now command line run ");
-        System.out.println("args content is " + Lists.newArrayList(args).toString());
+        originDao.queryPersonById("1");
     }
 }
