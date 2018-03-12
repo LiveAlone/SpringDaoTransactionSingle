@@ -13,6 +13,16 @@ public class Person {
 
     private Double score;
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", score=" + score +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }
