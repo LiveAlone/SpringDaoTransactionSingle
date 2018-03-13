@@ -1,6 +1,6 @@
-package org.yqj.dao.demo;
+package org.yqj.dao.demo.manager;
 
-import com.google.common.base.Preconditions;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +14,7 @@ import org.yqj.dao.demo.db2.PersonDB2Mapper;
  * @author yaoqijun on 2018-03-12.
  */
 @Component
+@Slf4j
 public class CommonManager {
 
     @Autowired
@@ -24,14 +25,14 @@ public class CommonManager {
 
     @Transactional(DB1Config.DB1_TRANSACTION)
     public void updateDiffDbCondition(){
-        personDB1Mapper.updatePersonScore(1L, 10666D);
-        personDB2Mapper.updatePersonScore(1L, 10666D);
+        personDB1Mapper.updatePersonScore(1L, 7D);
+        personDB2Mapper.updatePersonScore(1L, 7D);
 
 
         TransactionSynchronizationAdapter beforeTxCommitAdapter = new TransactionSynchronizationAdapter() {
             @Override
             public void beforeCommit(boolean readOnly) {
-                // todo
+                log.info("*********************** before commit config ***********************");
             }
         };
         TransactionSynchronizationManager.registerSynchronization(beforeTxCommitAdapter);
@@ -39,10 +40,10 @@ public class CommonManager {
         TransactionSynchronizationAdapter afterTxCommitAdapter = new TransactionSynchronizationAdapter() {
             @Override
             public void afterCommit() {
-                super.afterCommit();
+                log.info("*********************** after commit config ***********************");
             }
         };
         TransactionSynchronizationManager.registerSynchronization(afterTxCommitAdapter);
-        throw new IllegalStateException("");
+//        throw new IllegalStateException("");
     }
 }
