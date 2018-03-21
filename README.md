@@ -4,6 +4,8 @@ Spring mybatis 支持3 注解相关的配置方式
 
 Spring Transaction config 配置启动方式
 
+Spring 多 事务， mybatis 结合执行方式
+
 创建数据库启动
 ```sql
 create database db1;
