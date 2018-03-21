@@ -4,6 +4,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
@@ -13,7 +14,13 @@ import javax.sql.DataSource;
  */
 @Configuration
 @Slf4j
+
 public class DB1Config {
+
+    @Bean
+    public JdbcTemplate jdbcTemplate(){
+        return new JdbcTemplate(dataSource());
+    }
 
     @Bean
     public DataSourceTransactionManager dataSourceTransactionManager(){
@@ -22,6 +29,7 @@ public class DB1Config {
         return txManager;
     }
 
+    @Bean
     public DataSource dataSource(){
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");

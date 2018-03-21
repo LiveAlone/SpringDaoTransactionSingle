@@ -20,7 +20,12 @@ public class RunCommandLine implements CommandLineRunner{
     private Db1Manager db1Manager;
 
     public void run(String... args) {
-        db1Manager.updateDiffDbConditionWithCallback();
+//        db1Manager.updateDiffDbConditionWithCallback();
+        try {
+            db1Manager.insertData();
+        }catch (Exception e){
+            log.info("error content");
+        }
         log.info(" command info run");
     }
 }

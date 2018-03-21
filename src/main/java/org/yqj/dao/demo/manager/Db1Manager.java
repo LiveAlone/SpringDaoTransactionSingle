@@ -1,6 +1,8 @@
 package org.yqj.dao.demo.manager;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
@@ -12,6 +14,15 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 @Component
 @Slf4j
 public class Db1Manager {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @Transactional
+    public void insertData(){
+        jdbcTemplate.execute("INSERT INTO t_person_single(name, age, score) VALUES ('yaoqijun', 6, 90.66);");
+        throw new IllegalStateException("illegal state");
+    }
 
     @Transactional
     public void updateDiffDbConditionWithCallback(){
