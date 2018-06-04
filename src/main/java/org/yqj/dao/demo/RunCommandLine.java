@@ -22,9 +22,10 @@ public class RunCommandLine implements CommandLineRunner{
     public void run(String... args) {
 //        db1Manager.updateDiffDbConditionWithCallback();
         try {
-            db1Manager.insertData();
+//            db1Manager.insertData();
+            db1Manager.datasourceSourceExecute();
         }catch (Exception e){
-            log.info("error content");
+            log.info("error content", e);
         }
         log.info(" command info run");
     }

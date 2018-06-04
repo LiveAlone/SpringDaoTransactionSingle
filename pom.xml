@@ -18,6 +18,13 @@
 
     <dependencies>
 
+        <!-- hikariCP connection -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
         <!-- jdbc starter content -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
